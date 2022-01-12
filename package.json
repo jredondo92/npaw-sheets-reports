@@ -1,11 +1,7 @@
 {
-  "name": "react-google-apps-script",
-  "version": "2.0.0",
-  "description": "Starter project for using React with Google Apps Script",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/enuchi/React-Google-Apps-Script.git"
-  },
+  "name": "npaw-sheets-reports",
+  "version": "0.0.1",
+  "description": "NPAW Reports Add on for Google Sheets",
   "scripts": {
     "test": "test",
     "login": "clasp login",
@@ -17,7 +13,7 @@
     "deploy:dev": "rimraf dist && npm run build:dev && npx clasp push",
     "deploy": "rimraf dist && npm run build && npx clasp push",
     "serve": "cross-env NODE_ENV=development webpack-dev-server",
-    "start": "npm run deploy:dev && npm run serve && npm run open"
+    "start": "npm run deploy:dev && npm run serve"
   },
   "keywords": [
     "react",
@@ -26,7 +22,7 @@
     "script",
     "sheets"
   ],
-  "author": "Elisha Nuchi",
+  "author": "Hugo Corta",
   "license": "MIT",
   "engines": {
     "node": ">=10.0.0",
