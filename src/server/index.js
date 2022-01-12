@@ -10,6 +10,7 @@ import * as publicConfigurationFunctions from './configuration';
 global.onOpen = publicUiFunctions.onOpen;
 global.openAuthDialog = publicUiFunctions.openAuthDialog;
 global.openConfigurationDialog = publicUiFunctions.openConfigurationDialog;
+global.cleanProject = publicUiFunctions.cleanProject;
 
 // Sheets Methods
 global.getSheetsData = publicSheetFunctions.getSheetsData;
@@ -18,9 +19,9 @@ global.deleteSheet = publicSheetFunctions.deleteSheet;
 global.setActiveSheet = publicSheetFunctions.setActiveSheet;
 
 // Properties Methods
-global.getProperties = publicPropertiesFunctions.getProperties;
 global.getPropertiesKeys = publicPropertiesFunctions.getPropertiesKeys;
-global.getPropertiesValues = publicPropertiesFunctions.getPropertiesValues;
+global.getProperty = publicPropertiesFunctions.getProperty;
+global.getProperties = publicPropertiesFunctions.getProperties;
 global.setProperties = publicPropertiesFunctions.setProperties;
 global.setProperty = publicPropertiesFunctions.setProperty;
 global.deleteAllProperties = publicPropertiesFunctions.deleteAllProperties;

@@ -1,0 +1,8 @@
+.dialog_auth__form > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog_auth__form input {
+  margin-bottom: 8px;
+}

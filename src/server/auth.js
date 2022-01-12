@@ -37,12 +37,9 @@ export const loginUser = payload => {
     };
 
     // Save to storage
-    publicPropertiesFunctions.setProperties({
-      [AUTH_PROPERTY_KEY]: userInfo,
-    });
+    publicPropertiesFunctions.setProperty(AUTH_PROPERTY_KEY, userInfo);
 
-    const properties = publicPropertiesFunctions.getProperties();
-    return properties;
+    return userInfo;
   } catch (e) {
     throw e;
   }

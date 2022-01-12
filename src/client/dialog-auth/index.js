@@ -1,7 +1,11 @@
+// Dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SheetEditor from './components/SheetEditor';
 
+// Styles
 import './styles.css';
 
-ReactDOM.render(<SheetEditor />, document.getElementById('index'));
+// components
+import { AuthForm } from './components';
+
+ReactDOM.render(<AuthForm />, document.getElementById('index'));
