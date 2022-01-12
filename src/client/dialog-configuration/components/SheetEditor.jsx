@@ -28,15 +28,11 @@ const SheetEditor = () => {
 
   return (
     <div>
-      <h1>Auth</h1>
       <p>
         This is a sample page that demonstrates a simple React app. Enter a name
         for a new sheet, hit enter and the new sheet will be created. Click the
         red &times; next to the sheet name to delete it.
       </p>
-
-      {JSON.stringify(credentials)}
-      <button onClick={onSubmit}>Login test</button>
     </div>
   );
 };

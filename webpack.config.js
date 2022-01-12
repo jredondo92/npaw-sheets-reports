@@ -43,16 +43,16 @@ const devDialogEntry = './dev/index.js';
 // define client entry points and output names
 const clientEntrypoints = [
   {
-    name: 'CLIENT - Dialog Demo',
+    name: 'CLIENT - Dialog Auth',
     entry: './src/client/dialog-auth/index.js',
     filename: 'dialog-auth', // we'll add the .html suffix to these
     template: './src/client/dialog-auth/index.html',
   },
   {
-    name: 'CLIENT - Sidebar About Page',
-    entry: './src/client/sidebar-about-page/index.js',
-    filename: 'sidebar-about-page',
-    template: './src/client/sidebar-about-page/index.html',
+    name: 'CLIENT - Dialog Configuration',
+    entry: './src/client/dialog-configuration/index.js',
+    filename: 'dialog-configuration', // we'll add the .html suffix to these
+    template: './src/client/dialog-configuration/index.html',
   },
 ];
 

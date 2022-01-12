@@ -3,7 +3,7 @@ import * as publicAuthFunctions from './auth';
 import * as publicConfigurationFunctions from './configuration';
 
 export const onOpen = () => {
-  const user = publicAuthFunctions.getUser();
+  const isLoggedUser = publicAuthFunctions.getUser();
 
   // if (!user) {
   //   SpreadsheetApp.getUi().alert('Not logged!');
@@ -14,7 +14,7 @@ export const onOpen = () => {
   const menu = SpreadsheetApp.getUi()
     .createMenu('NPAW Reports')
     .addItem('Login', 'openAuthDialog')
-    .addItem('Configuration', 'openAuthDialog')
+    .addItem('Configuration', 'openConfigurationDialog')
     .addSeparator()
     .addItem('Logout', 'logout');
 
