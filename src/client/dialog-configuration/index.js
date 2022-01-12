@@ -1,7 +1,11 @@
+// Dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SheetEditor from './components/SheetEditor';
 
+// Components
+import { ConfigurationDialog } from './container';
+
+// Styles
 import './styles.css';
 
-ReactDOM.render(<SheetEditor />, document.getElementById('index'));
+ReactDOM.render(<ConfigurationDialog />, document.getElementById('index'));

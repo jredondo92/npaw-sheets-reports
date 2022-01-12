@@ -34,6 +34,16 @@ export const setConfiguration = configuration => {
   );
 };
 
+export const setConfigurationKey = (key, value) => {
+  const configuration = getConfiguration();
+  const updatedConfiguration = {
+    ...configuration,
+    [key]: value,
+  };
+
+  return setConfiguration(updatedConfiguration);
+};
+
 export const deleteConfiguration = () => {
   return publicPropertiesFunctions.deleteProperty(CONFIGURATION_PROPERTY_KEY);
 };

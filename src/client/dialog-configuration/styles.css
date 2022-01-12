@@ -1,0 +1,10 @@
+.dialog_configuration {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 8px;
+}
+
+.dialog_configuration__toggle {
+  display: flex;
+  flex-direction: column;
+}

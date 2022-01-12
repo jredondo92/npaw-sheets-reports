@@ -4,6 +4,7 @@ import * as publicConfigurationFunctions from './configuration';
 
 export const onOpen = () => {
   const isLoggedUser = publicAuthFunctions.getUser();
+  publicConfigurationFunctions.startConfiguration();
 
   const menu = SpreadsheetApp.getUi()
     .createMenu('NPAW Reports')
