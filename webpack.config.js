@@ -44,15 +44,15 @@ const devDialogEntry = './dev/index.js';
 const clientEntrypoints = [
   {
     name: 'CLIENT - Dialog Auth',
-    entry: './src/client/dialog-auth/index.js',
+    entry: './src/client/components/dialog-auth/index.js',
     filename: 'dialog-auth', // we'll add the .html suffix to these
-    template: './src/client/dialog-auth/index.html',
+    template: './src/client/components/dialog-auth/index.html',
   },
   {
     name: 'CLIENT - Dialog Configuration',
-    entry: './src/client/dialog-configuration/index.js',
+    entry: './src/client/components/dialog-configuration/index.js',
     filename: 'dialog-configuration', // we'll add the .html suffix to these
-    template: './src/client/dialog-configuration/index.html',
+    template: './src/client/components/dialog-configuration/index.html',
   },
 ];
 
@@ -101,23 +101,16 @@ const clientConfig = {
     filename: 'main.js',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      '@Components': path.resolve(__dirname, 'src/client/components'),
+      '@Utils': path.resolve(__dirname, 'src/client/utils'),
+      '@Hooks': path.resolve(__dirname, 'src/client/hooks'),
+      '@Constants': path.resolve(__dirname, 'src/client/constants'),
+    },
   },
   module: {
     rules: [
-      // typescript config
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'ts-loader',
-          },
-        ],
-      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -149,20 +142,20 @@ const DynamicCdnWebpackPluginConfig = {
     // "name" should match the package being imported
     // "var" is important to get right -- this should be the exposed global. Look up "webpack externals" for info.
     switch (packageName) {
-      case 'react-transition-group':
-        return {
-          name: packageName,
-          var: 'ReactTransitionGroup',
-          version: packageVersion,
-          url: `https://unpkg.com/react-transition-group@${packageVersion}/dist/react-transition-group${packageSuffix}`,
-        };
-      case 'react-bootstrap':
-        return {
-          name: packageName,
-          var: 'ReactBootstrap',
-          version: packageVersion,
-          url: `https://unpkg.com/react-bootstrap@${packageVersion}/dist/react-bootstrap${packageSuffix}`,
-        };
+      // case 'react-transition-group':
+      //   return {
+      //     name: packageName,
+      //     var: 'ReactTransitionGroup',
+      //     version: packageVersion,
+      //     url: `https://unpkg.com/react-transition-group@${packageVersion}/dist/react-transition-group${packageSuffix}`,
+      //   };
+      // case 'react-bootstrap':
+      //   return {
+      //     name: packageName,
+      //     var: 'ReactBootstrap',
+      //     version: packageVersion,
+      //     url: `https://unpkg.com/react-bootstrap@${packageVersion}/dist/react-bootstrap${packageSuffix}`,
+      //   };
       default:
         return null;
     }
@@ -255,23 +248,10 @@ const serverConfig = {
     libraryTarget: 'this',
   },
   resolve: {
-    extensions: ['.ts', '.js', '.json'],
+    extensions: ['.js', '.json'],
   },
   module: {
     rules: [
-      // typescript config
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'ts-loader',
-          },
-        ],
-      },
       {
         test: /\.js$/,
         exclude: /node_modules/,

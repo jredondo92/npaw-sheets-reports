@@ -1,10 +1,8 @@
+// Dependencies
 import React, { useState, useEffect } from 'react';
 
-import { server } from '../../utils';
-
-const { serverFunctions } = server;
-
-const AUTH_PROPERTY_KEY = 'NPAW_REPORTS__AUTH';
+// Utils
+import { server } from '@Utils';
 
 export const AuthForm = () => {
   const [loggedUser, setLoggedUser] = useState();
@@ -16,7 +14,7 @@ export const AuthForm = () => {
 
   useEffect(() => {
     async function getProperties() {
-      const response = await serverFunctions.getProperty(AUTH_PROPERTY_KEY);
+      const response = await server.serverFunctions.getUser();
       setLoggedUser(response);
       setIsLoading(false);
     }
@@ -35,7 +33,7 @@ export const AuthForm = () => {
     setIsLoading(true);
 
     try {
-      const user = await serverFunctions.loginUser({
+      const user = await server.serverFunctions.loginUser({
         username: 'hugo_npaw.devyoubora',
         password: 'hugo_npaw_20918!',
       });
