@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // Utils
-import server from '../../utils/server';
+import { server } from '../../utils';
 
 // Pages
 import { DynamicReport, StaticReport } from '../pages';

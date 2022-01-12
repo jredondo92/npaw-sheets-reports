@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import server from '../../utils/server';
+import { server } from '../../utils';
 
 const { serverFunctions } = server;
 
