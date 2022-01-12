@@ -17,7 +17,7 @@ export const onOpen = () => {
 };
 
 export const openAuthDialog = () => {
-  const html = HtmlService.createHtmlOutputFromFile('dialog-auth')
+  const html = HtmlService.createHtmlOutputFromFile('dialogAuth')
     .setWidth(320)
     .setHeight(100);
 
@@ -25,7 +25,7 @@ export const openAuthDialog = () => {
 };
 
 export const openConfigurationDialog = () => {
-  const html = HtmlService.createHtmlOutputFromFile('dialog-configuration')
+  const html = HtmlService.createHtmlOutputFromFile('dialogConfiguration')
     .setWidth(400)
     .setHeight(600);
 

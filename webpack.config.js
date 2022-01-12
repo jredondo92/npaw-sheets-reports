@@ -44,15 +44,15 @@ const devDialogEntry = './dev/index.js';
 const clientEntrypoints = [
   {
     name: 'CLIENT - Dialog Auth',
-    entry: './src/client/components/dialog-auth/index.js',
-    filename: 'dialog-auth', // we'll add the .html suffix to these
-    template: './src/client/components/dialog-auth/index.html',
+    entry: './src/client/components/dialogAuth/index.js',
+    filename: 'dialogAuth', // we'll add the .html suffix to these
+    template: './src/client/components/dialogAuth/index.html',
   },
   {
     name: 'CLIENT - Dialog Configuration',
-    entry: './src/client/components/dialog-configuration/index.js',
-    filename: 'dialog-configuration', // we'll add the .html suffix to these
-    template: './src/client/components/dialog-configuration/index.html',
+    entry: './src/client/components/dialogConfiguration/index.js',
+    filename: 'dialogConfiguration', // we'll add the .html suffix to these
+    template: './src/client/components/dialogConfiguration/index.html',
   },
 ];
 
