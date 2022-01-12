@@ -210,7 +210,7 @@ You will need to use the "standalone" version of React DevTools since our React 
 
 2. In a new terminal window run `npx react-devtools` to launch the DevTools standalone app.
 
-3. Add `<script src="http://localhost:8097"></script>` to the top of your `<head>` in your React app, e.g. in the [index.html](https://github.com/enuchi/React-Google-Apps-Script/blob/e73e51e56e99903885ef8dd5525986f99038d8bf/src/client/dialog-demo-bootstrap/index.html) file in the sample Bootstrap app.
+3. Add `<script src="http://localhost:8097"></script>` to the top of your `<head>` in your React app, e.g. in the [index.html](https://github.com/enuchi/React-Google-Apps-Script/blob/e73e51e56e99903885ef8dd5525986f99038d8bf/src/client/dialog-auth-bootstrap/index.html) file in the sample Bootstrap app.
 
 4. Deploy your app (`npm run deploy:dev`) and you should see DevTools tool running and displaying your app hierarchy.
 
@@ -242,7 +242,7 @@ This project now supports typescript!
 
 To use, simply use a typescript extension in either the client code (.ts/.tsx) or the server code (.ts), and your typescript file will compile to the proper format.
 
-For client-side code, see [FormInput.tsx in the Bootstrap demo](./src/client/dialog-demo-bootstrap/components/FormInput.tsx) for an example file. Note that it is okay to have a mix of javascript and typescript, as seen in the Bootstrap demo.
+For client-side code, see [FormInput.tsx in the Bootstrap demo](./src/client/dialog-auth-bootstrap/components/FormInput.tsx) for an example file. Note that it is okay to have a mix of javascript and typescript, as seen in the Bootstrap demo.
 
 To use typescript in server code, just change the file extension to .ts. The server-side code already utilizes type definitions for Google Apps Script APIs.
 
@@ -262,13 +262,13 @@ Important: Since Google Apps Scripts projects don't let you easily reference ext
 
 ### Styles
 
-By default this project supports global CSS stylesheets. Make sure to import your stylesheet in your entrypoint file [index.js](./src/client/dialog-demo/index.js):
+By default this project supports global CSS stylesheets. Make sure to import your stylesheet in your entrypoint file [index.js](./src/client/dialog-auth/index.js):
 
 ```javascript
 import './styles.css';
 ```
 
-Many external component libraries require a css stylesheet in order to work properly. You can import stylesheets in the HTML template, [as shown here with the Bootstrap stylesheet](./src/client/dialog-demo-bootstrap/index.html).
+Many external component libraries require a css stylesheet in order to work properly. You can import stylesheets in the HTML template, [as shown here with the Bootstrap stylesheet](./src/client/dialog-auth-bootstrap/index.html).
 
 The webpack.config.js file can also be modified to support scss and other style libraries.
 

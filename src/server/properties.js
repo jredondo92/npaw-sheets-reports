@@ -1,9 +1,29 @@
-export const getProperties = () => PropertiesService.getDocumentProperties();
-export const getPropertiesKeys = () => getProperties().getKeys();
-export const getPropertiesValues = () => getProperties().getKeys();
-export const setProperties = properties =>
-  getProperties().setProperties(properties);
-export const setProperty = (key, value) =>
-  getProperties().setProperties(key, value);
-export const deleteAllProperties = () => getProperties().deleteAllProperties();
-export const deleteProperty = key => getProperties().deleteProperty(key);
+var documentProperties = PropertiesService.getDocumentProperties();
+
+export const getPropertiesKeys = () => {
+  return documentProperties.getKeys();
+};
+
+export const getProperty = key => {
+  return documentProperties.getProperty(key);
+};
+
+export const getProperties = () => {
+  return documentProperties.getProperties();
+};
+
+export const setProperties = properties => {
+  return documentProperties.setProperties(properties);
+};
+
+export const setProperty = (key, value) => {
+  return documentProperties.setProperty(key, value);
+};
+
+export const deleteAllProperties = () => {
+  return documentProperties.deleteAllProperties();
+};
+
+export const deleteProperty = key => {
+  return documentProperties.deleteProperty(key);
+};

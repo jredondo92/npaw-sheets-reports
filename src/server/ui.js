@@ -1,23 +1,42 @@
 import { runImport } from './sheets';
+import * as publicAuthFunctions from './auth';
+import * as publicConfigurationFunctions from './configuration';
 
 export const onOpen = () => {
+  const user = publicAuthFunctions.getUser();
+
+  // if (!user) {
+  //   SpreadsheetApp.getUi().alert('Not logged!');
+  // } else {
+  //   SpreadsheetApp.getUi().alert('logged!');
+  // }
+
   const menu = SpreadsheetApp.getUi()
-    .createMenu('NPAW Reports') // edit me!
-    .addItem('Sheet Editor', 'openDialog')
-    .addItem('About me', 'openAboutSidebar');
+    .createMenu('NPAW Reports')
+    .addItem('Login', 'openAuthDialog')
+    .addItem('Configuration', 'openAuthDialog')
+    .addSeparator()
+    .addItem('Logout', 'logout');
 
   menu.addToUi();
-  runImport();
 };
 
-export const openDialog = () => {
-  const html = HtmlService.createHtmlOutputFromFile('dialog-demo')
-    .setWidth(600)
+export const openAuthDialog = () => {
+  const html = HtmlService.createHtmlOutputFromFile('dialog-auth')
+    .setWidth(400)
+    .setHeight(100);
+
+  SpreadsheetApp.getUi().showModalDialog(html, 'Login');
+};
+
+export const openConfigurationDialog = () => {
+  const html = HtmlService.createHtmlOutputFromFile('dialog-configuration')
+    .setWidth(400)
     .setHeight(600);
-  SpreadsheetApp.getUi().showModalDialog(html, 'Sheet Editor');
+
+  SpreadsheetApp.getUi().showModalDialog(html, 'Configuration');
 };
 
-export const openAboutSidebar = () => {
-  const html = HtmlService.createHtmlOutputFromFile('sidebar-about-page');
-  SpreadsheetApp.getUi().showSidebar(html);
+export const logout = () => {
+  publicAuthFunctions.logoutUser();
 };
