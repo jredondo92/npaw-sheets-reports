@@ -1,51 +1,25 @@
-import * as publicPropertiesFunctions from './properties';
+import * as publicAuthFunctions from './auth';
+import * as publicConfigurationFunctions from './configuration';
+// import * as publicPropertiesFunctions from './properties';
 
-const AUTH_PROPERTY_KEY = 'NPAW_REPORTS__AUTH';
+export const getStaticReport = () => {
+  const user = publicAuthFunctions.getUser();
+  const configuration = publicConfigurationFunctions.getConfiguration();
 
-export const getUser = () => {
-  const user = publicPropertiesFunctions.getProperty(AUTH_PROPERTY_KEY);
-  return user;
-};
-
-export const getReports = payload => {
-  const url = `https://ui-api.youbora.com/authentication/users/login?version=6&location=npaw-sheets-reports`;
-
-  const payloadEncoded = Object.keys(payload)
-    .map(k => {
-      return `${encodeURIComponent(k)}=${encodeURIComponent(payload[k])}`;
-    })
-    .join('&');
+  const url = `https://fast.youbora.com/${user.accountCode}/reports/download?token=${user.token}&reportId=${configuration.reportId}`;
 
   try {
     const response = UrlFetchApp.fetch(url, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      payload: payloadEncoded,
+      method: 'get',
     });
 
-    const { username, token, accountCode, accountId } = JSON.parse(
-      response.getContentText()
-    );
+    // const blob = response.getBlob();
+    // const data = blob.getDataAsString();
+    // SpreadsheetApp.getUi().alert(data);
+    SpreadsheetApp.getUi().alert(response);
 
-    const userInfo = {
-      username,
-      token,
-      accountCode,
-      accountId,
-    };
-
-    // Save to storage
-    publicPropertiesFunctions.setProperty(AUTH_PROPERTY_KEY, userInfo);
-
-    return userInfo;
+    return data;
   } catch (e) {
     throw e;
   }
-};
-
-export const logoutUser = () => {
-  // const user = publicPropertiesFunctions.deleteProperty('user');
-  publicPropertiesFunctions.deleteAllProperties();
 };

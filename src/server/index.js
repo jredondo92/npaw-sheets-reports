@@ -3,6 +3,7 @@ import * as publicSheetFunctions from './sheets';
 import * as publicPropertiesFunctions from './properties';
 import * as publicAuthFunctions from './auth';
 import * as publicConfigurationFunctions from './configuration';
+import * as publicReportsFunctions from './reports';
 
 // Expose public functions by attaching to `global`
 
@@ -11,6 +12,7 @@ global.onOpen = publicUiFunctions.onOpen;
 global.openAuthDialog = publicUiFunctions.openAuthDialog;
 global.openConfigurationDialog = publicUiFunctions.openConfigurationDialog;
 global.cleanProject = publicUiFunctions.cleanProject;
+global.fetchSheetWithReport = publicUiFunctions.fetchSheetWithReport;
 
 // Sheets Methods
 global.getSheetsData = publicSheetFunctions.getSheetsData;
@@ -37,3 +39,6 @@ global.getConfiguration = publicConfigurationFunctions.getConfiguration;
 global.setConfiguration = publicConfigurationFunctions.setConfiguration;
 global.deleteConfiguration = publicConfigurationFunctions.deleteConfiguration;
 global.startConfiguration = publicConfigurationFunctions.startConfiguration;
+
+// Reports Methods
+global.getStaticReport = publicReportsFunctions.getStaticReport;
