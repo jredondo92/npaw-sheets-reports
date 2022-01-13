@@ -2,25 +2,14 @@
 import React, { useState, useEffect } from 'react';
 
 // Utils
-import { server } from '@Utils';
+import { useUser } from '@Hooks';
 
 export const AuthForm = () => {
-  const [loggedUser, setLoggedUser] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLogged, isMounting, isLoading, user, error, loginUser } = useUser();
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
   });
-
-  useEffect(() => {
-    async function getProperties() {
-      const response = await server.serverFunctions.getUser();
-      setLoggedUser(response);
-      setIsLoading(false);
-    }
-
-    getProperties();
-  }, []);
 
   const onChangeInput = key => ev => {
     setCredentials({
@@ -30,29 +19,17 @@ export const AuthForm = () => {
   };
 
   async function onSubmit() {
-    setIsLoading(true);
-
-    try {
-      const user = await server.serverFunctions.loginUser({
-        username: 'hugo_npaw.devyoubora',
-        password: 'hugo_npaw_20918!',
-      });
-      setLoggedUser(user);
-    } catch (error) {
-      alert(error);
-    }
-
-    setIsLoading(false);
+    await loginUser(credentials);
   }
 
-  if (isLoading) {
+  if (isMounting || isLoading) {
     return 'Loading...';
   }
 
-  if (loggedUser) {
+  if (isLogged) {
     return (
       <div>
-        <p>{`Logged in account ${loggedUser.accountCode}`}</p>
+        <p>{`Logged in account ${user.accountCode}`}</p>
       </div>
     );
   }
@@ -78,6 +55,7 @@ export const AuthForm = () => {
         />
         <button type={'submit'}>Login</button>
       </form>
+      {error}
     </div>
   );
 };
