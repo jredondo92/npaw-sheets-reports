@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 
 // Utils
-import { server } from '@Utils';
+import { useUser } from '@Hooks';
 
 // Pages
 import { DynamicReport, StaticReport } from '../pages';
@@ -15,19 +15,7 @@ const REPORTS_TYPES = [
 
 export function ConfigurationDialog() {
   const [type, setType] = useState('static');
-  const [loggedUser, setLoggedUser] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function getProperties() {
-      const response = await server.serverFunctions.getUser();
-      setLoggedUser(response);
-      setIsLoading(false);
-    }
-
-    getProperties();
-  }, []);
-
+  const { isMounting, user } = useUser();
   function isChecked(key) {
     return type === key;
   }
@@ -38,11 +26,11 @@ export function ConfigurationDialog() {
     }
   };
 
-  if (isLoading) {
+  if (isMounting) {
     return 'Loading...';
   }
 
-  if (!isLoading && !loggedUser) {
+  if (!isMounting && !user) {
     return 'You need to be logged to config your report';
   }
 

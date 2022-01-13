@@ -1,11 +1,23 @@
-// Dependencies
-import { useState, useEffect } from 'react';
-
 // Hooks
-import { useStorage, useUser } from '@Hooks';
+import { useStorage, useUser, useConfiguration } from '@Hooks';
 
 export function StaticReport() {
   const userData = useUser();
-  const [reports, setReports] = useStorage('NPAW_REPORTS__REPORTS', []);
-  return <span>{JSON.stringify(userData)}</span>;
+  const { configuration, setConfiguration } = useConfiguration();
+  return (
+    <div>
+      {/* <span>{JSON.stringify(userData)}</span>; */}
+      <span>{JSON.stringify(configuration)}</span>;
+      <button
+        onClick={() => {
+          setConfiguration({
+            ...configuration,
+            reportId: 10,
+          });
+        }}
+      >
+        Test
+      </button>
+    </div>
+  );
 }
