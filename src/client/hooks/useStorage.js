@@ -5,25 +5,38 @@ import { useState } from 'react';
 import { server } from '@Utils';
 
 export function useStorage(key = '', initialValue) {
-  const [state, setState] = useState(() => {
-    try {
-      const storageValue = server.serverFunctions.getProperty(key);
+  const [isMounting, setIsMounting] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [storage, setState] = useState();
 
-      if (!storageValue) {
-        server.serverFunctions.setProperty(key, initialValue);
-        return initialValue;
-      } else {
-        return storageValue;
+  useEffect(() => {
+    async function getStorageKey() {
+      try {
+        const storageValue = await server.serverFunctions.getProperty(key);
+
+        if (!storageValue) {
+          await server.serverFunctions.setProperty(key, initialValue);
+          setState(initialValue);
+        } else {
+          setState(storageValue);
+        }
+      } catch {
+        setState(initialValue);
       }
-    } catch {
-      return initialValue;
-    }
-  });
 
-  function setValue(value) {
-    server.serverFunctions.setProperty(key, value);
+      setIsLoading(false);
+      setIsMounting(false);
+    }
+
+    getStorageKey();
+  }, []);
+
+  async function setStorage(value) {
+    setIsLoading(true);
+    await server.serverFunctions.setProperty(key, value);
     setState(value);
+    setIsLoading(false);
   }
 
-  return [state, setValue];
+  return { storage, setStorage, isLoading, isMounting };
 }

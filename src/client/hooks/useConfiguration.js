@@ -13,11 +13,11 @@ export function useConfiguration(key = '') {
     async function getConfiguration() {
       const user = await server.serverFunctions.getConfiguration();
       setState(user);
+      setIsLoading(false);
+      setIsMounting(false);
     }
 
     getConfiguration();
-    setIsLoading(false);
-    setIsMounting(false);
   }, []);
 
   async function setConfiguration(value) {
