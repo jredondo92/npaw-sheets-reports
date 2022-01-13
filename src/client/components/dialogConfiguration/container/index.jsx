@@ -11,15 +11,14 @@ import { DynamicReport, StaticReport } from '../pages';
 import { REPORTS_TYPES } from '@Constants';
 
 export function ConfigurationDialog() {
+  const { isMounting: isMountingUser, user, isLogged } = useUser();
   const {
     configuration,
     setConfiguration,
     isLoading: isLoadingConfig,
     isMounting: isMountingConfig,
   } = useConfiguration();
-  const { isMounting: isMountingUser, user } = useUser();
   const isMounting = isMountingUser || isMountingConfig;
-  const isUserLogged = !isMountingUser && !user;
 
   function isChecked(key) {
     return configuration.type === key;
@@ -38,7 +37,7 @@ export function ConfigurationDialog() {
     return 'Loading...';
   }
 
-  if (isUserLogged) {
+  if (!isLogged) {
     return 'You need to be logged to config your report';
   }
 

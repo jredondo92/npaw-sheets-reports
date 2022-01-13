@@ -8,11 +8,17 @@ export function useConfiguration(key = '') {
   const [isMounting, setIsMounting] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [configuration, setState] = useState();
+  const [error, setError] = useState();
 
   useEffect(() => {
     async function getConfiguration() {
-      const user = await server.serverFunctions.getConfiguration();
-      setState(user);
+      try {
+        const user = await server.serverFunctions.getConfiguration();
+        setState(user);
+      } catch (e) {
+        setError(e);
+      }
+
       setIsLoading(false);
       setIsMounting(false);
     }
@@ -22,10 +28,16 @@ export function useConfiguration(key = '') {
 
   async function setConfiguration(value) {
     setIsLoading(true);
-    await server.serverFunctions.setConfiguration(value);
-    setState(value);
+
+    try {
+      await server.serverFunctions.setConfiguration(value);
+      setState(value);
+    } catch (e) {
+      setError(e);
+    }
+
     setIsLoading(false);
   }
 
-  return { configuration, setConfiguration, isLoading, isMounting };
+  return { configuration, setConfiguration, isLoading, isMounting, error };
 }
