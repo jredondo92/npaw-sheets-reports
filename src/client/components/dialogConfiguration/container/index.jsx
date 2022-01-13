@@ -2,27 +2,35 @@
 import { useState, useEffect } from 'react';
 
 // Utils
-import { useUser } from '@Hooks';
+import { useUser, useConfiguration } from '@Hooks';
 
 // Pages
 import { DynamicReport, StaticReport } from '../pages';
 
 // Constants
-const REPORTS_TYPES = [
-  { label: 'Static Report', value: 'static' },
-  { label: 'Dynamic Report', value: 'dynamic' },
-];
+import { REPORTS_TYPES } from '@Constants';
 
 export function ConfigurationDialog() {
-  const [type, setType] = useState('static');
-  const { isMounting, user } = useUser();
+  const {
+    configuration,
+    setConfiguration,
+    isLoading: isLoadingConfig,
+    isMounting: isMountingConfig,
+  } = useConfiguration();
+  const { isMounting: isMountingUser, user } = useUser();
+  const isMounting = isMountingUser || isMountingConfig;
+  const isUserLogged = !isMountingUser && !user;
+
   function isChecked(key) {
-    return type === key;
+    return configuration.type === key;
   }
 
   const onChange = key => ev => {
     if (ev.target.checked) {
-      setType(key);
+      setConfiguration({
+        ...configuration,
+        type: key,
+      });
     }
   };
 
@@ -30,7 +38,7 @@ export function ConfigurationDialog() {
     return 'Loading...';
   }
 
-  if (!isMounting && !user) {
+  if (isUserLogged) {
     return 'You need to be logged to config your report';
   }
 
@@ -48,7 +56,10 @@ export function ConfigurationDialog() {
           </label>
         ))}
       </div>
-      {type === 'static' ? <StaticReport /> : <DynamicReport />}
+
+      {isLoadingConfig && 'Loading...'}
+
+      {configuration.type === 'static' ? <StaticReport /> : <DynamicReport />}
     </div>
   );
 }
