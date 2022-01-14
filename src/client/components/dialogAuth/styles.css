@@ -1,3 +1,13 @@
+.dialog_auth__form__logo {
+  display: flex;
+  place-content: center;
+  margin-bottom: 16px;
+}
+
+.dialog_auth__form__logo img {
+  height: 42px;
+}
+
 .dialog_auth__form > form {
   display: flex;
   flex-direction: column;

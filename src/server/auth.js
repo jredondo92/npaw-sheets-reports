@@ -41,6 +41,8 @@ export const loginUser = payload => {
     publicPropertiesFunctions.setProperty(AUTH_PROPERTY_KEY, userInfo);
     publicConfigurationFunctions.startConfiguration();
 
+    SpreadsheetApp.getActiveSpreadsheet().toast('Logged');
+
     return userInfo;
   } catch (e) {
     throw e;
@@ -51,4 +53,5 @@ export const logoutUser = () => {
   // const user = publicPropertiesFunctions.deleteProperty('user');
   publicPropertiesFunctions.deleteAllProperties();
   publicConfigurationFunctions.startConfiguration();
+  SpreadsheetApp.getActiveSpreadsheet().toast('Logged out');
 };

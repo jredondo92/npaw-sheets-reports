@@ -94,6 +94,8 @@ export function injectReportInSheet({ configuration }) {
     range.setValues(data);
 
     sheet.autoResizeColumns(1, columns);
+
+    SpreadsheetApp.getActiveSpreadsheet().toast('Imported data');
   } catch (e) {
     Logger.log(e);
   }

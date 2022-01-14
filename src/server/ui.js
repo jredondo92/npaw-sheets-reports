@@ -19,9 +19,9 @@ export const onOpen = () => {
 export const openAuthDialog = () => {
   const html = HtmlService.createHtmlOutputFromFile('dialogAuth')
     .setWidth(320)
-    .setHeight(100);
+    .setHeight(200);
 
-  SpreadsheetApp.getUi().showModalDialog(html, 'Login');
+  SpreadsheetApp.getUi().showModalDialog(html, 'Account');
 };
 
 export const openConfigurationDialog = () => {
@@ -42,6 +42,5 @@ export const fetchSheetWithReport = () => {
     );
 
     publicSheetsFunctions.injectReportInSheet({ data, configuration });
-    SpreadsheetApp.getUi().alert('Injected!!');
   }
 };

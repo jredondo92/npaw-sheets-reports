@@ -46,6 +46,10 @@ export const AuthForm = () => {
 
   return (
     <div className={'dialog_auth__form'}>
+      <div className={'dialog_auth__form__logo'}>
+        <img src="https://admin-api.npaw.com/resources/logo?theme=light" />
+      </div>
+
       <form onSubmit={onSubmit}>
         <input
           onChange={onChangeInput('username')}

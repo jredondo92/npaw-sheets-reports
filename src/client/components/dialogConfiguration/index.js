@@ -7,5 +7,6 @@ import { ConfigurationDialog } from './container';
 
 // Styles
 import './styles.css';
+import '../../global.styles.css';
 
 ReactDOM.render(<ConfigurationDialog />, document.getElementById('index'));
