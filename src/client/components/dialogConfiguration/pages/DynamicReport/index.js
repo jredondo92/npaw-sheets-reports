@@ -1,3 +1,9 @@
+import { FiltersWizard } from "./components"
 export function DynamicReport() {
-  return 'DynamicReport';
+
+  return (
+    <div className="App">
+      <FiltersWizard />
+    </div>
+  )
 }
