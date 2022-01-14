@@ -1,4 +1,9 @@
-export const getSheets = () => SpreadsheetApp.getActive().getSheets();
+export const getSheets = () =>
+  SpreadsheetApp.getActive()
+    .getSheets()
+    .map(sheet => sheet.getSheetName());
+
+export const getActiveSheet = () => SpreadsheetApp.getActive();
 
 export const getActiveSheetName = () =>
   SpreadsheetApp.getActive().getSheetName();
@@ -71,13 +76,16 @@ export function injectReportInSheet({ configuration }) {
     ],
   ];
 
+  const activeSheet = getActiveSheetName();
   const rows = data.length;
   const columns = data[0].length;
-  const { insertionCell } = configuration;
+  const { insertionCell, sheet } = configuration;
 
   try {
-    const sheet = SpreadsheetApp.getActive().getSheetByName('Sheet1');
-    const range = sheet.getRange(
+    const configSheet = SpreadsheetApp.getActive().getSheetByName(sheet);
+    const targetSheet = configSheet || activeSheet;
+
+    const range = targetSheet.getRange(
       insertionCell[0],
       insertionCell[1],
       rows,

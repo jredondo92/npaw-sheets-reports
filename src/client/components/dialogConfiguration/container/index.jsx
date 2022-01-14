@@ -2,15 +2,16 @@
 import { useState, useEffect } from 'react';
 
 // Utils
-import { useUser, useConfiguration } from '@Hooks';
+import { useUser, useConfiguration, useSheets } from '@Hooks';
 
 // Pages
 import { DynamicReport, StaticReport } from '../pages';
 
 // Constants
-import { REPORTS_TYPES } from '@Constants';
+import { REPORTS_TYPES, INJECTION_CELL } from '@Constants';
 
 export function ConfigurationDialog() {
+  const { isMounting: isMountingSheets, sheets, activeSheet } = useSheets();
   const { isMounting: isMountingUser, user, isLogged } = useUser();
   const {
     configuration,
@@ -18,7 +19,7 @@ export function ConfigurationDialog() {
     isLoading: isLoadingConfig,
     isMounting: isMountingConfig,
   } = useConfiguration();
-  const isMounting = isMountingUser || isMountingConfig;
+  const isMounting = isMountingUser || isMountingConfig || isMountingSheets;
 
   function isCheckedType(key) {
     return configuration.type === key;
@@ -32,6 +33,13 @@ export function ConfigurationDialog() {
       });
     }
   };
+
+  function onChangeSheet(ev) {
+    setConfiguration({
+      ...configuration,
+      sheet: ev.target.value,
+    });
+  }
 
   const onChangeInsertionCell = index => ev => {
     const newInsertion = [...configuration.insertionCell];
@@ -53,26 +61,32 @@ export function ConfigurationDialog() {
 
   return (
     <div className={'dialog_configuration'}>
-      <div className={'dialog_configuration__insertion_cell'}>
-        <label>
-          <input
-            value={configuration.insertionCell[0]}
-            min={1}
-            type="number"
-            onChange={onChangeInsertionCell(0)}
-          />
-          {'row'}
-        </label>
+      <div className={'dialog_configuration__sheet'}>
+        <select
+          value={configuration.sheet}
+          onChange={onChangeSheet}
+          name={'Sheet'}
+        >
+          {sheets.map(sheet => (
+            <option value={sheet} selected={sheet === configuration.sheet}>
+              {sheet}
+            </option>
+          ))}
+        </select>
+      </div>
 
-        <label>
-          <input
-            value={configuration.insertionCell[1]}
-            min={1}
-            type="number"
-            onChange={onChangeInsertionCell(1)}
-          />
-          {'column'}
-        </label>
+      <div className={'dialog_configuration__insertion_cell'}>
+        {INJECTION_CELL.map(({ label, index }) => (
+          <label key={label}>
+            <input
+              value={configuration.insertionCell[index]}
+              min={1}
+              type="number"
+              onChange={onChangeInsertionCell(index)}
+            />
+            {label}
+          </label>
+        ))}
       </div>
 
       <div className={'dialog_configuration__toggle'}>
@@ -89,6 +103,7 @@ export function ConfigurationDialog() {
       </div>
 
       {isLoadingConfig && 'Loading...'}
+      {JSON.stringify(sheets)}
 
       {configuration.type === 'static' ? <StaticReport /> : <DynamicReport />}
     </div>

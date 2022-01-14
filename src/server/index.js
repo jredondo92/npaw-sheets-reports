@@ -14,6 +14,9 @@ global.openConfigurationDialog = publicUiFunctions.openConfigurationDialog;
 global.fetchSheetWithReport = publicUiFunctions.fetchSheetWithReport;
 
 // Sheets Methods
+global.getSheets = publicSheetFunctions.getSheets;
+global.getActiveSheet = publicSheetFunctions.getActiveSheet;
+global.getActiveSheetName = publicSheetFunctions.getActiveSheetName;
 global.getSheetsData = publicSheetFunctions.getSheetsData;
 global.addSheet = publicSheetFunctions.addSheet;
 global.deleteSheet = publicSheetFunctions.deleteSheet;

@@ -3,10 +3,10 @@ import * as publicPropertiesFunctions from './properties';
 const CONFIGURATION_PROPERTY_KEY = 'NPAW_REPORTS__CONFIGURATION';
 
 // const CONFIGURATION = {
-//   type: 'static' || 'dynamic',
-//   // If static
-//   reportId: 'XXXXX',
-//   previewData: {},
+//   type: 'static' || 'dynamic', // Type of report
+//
+//   reportId: 'XXXXX', // For the static case
+//   previewData: {}, // The formatted object to be sent to the api
 
 //   // If  dynamic
 //   name: '',
@@ -14,8 +14,9 @@ const CONFIGURATION_PROPERTY_KEY = 'NPAW_REPORTS__CONFIGURATION';
 //   date: '00:00:00',
 //   metrics: [],
 
-//   // Common
-//   insertionCell: [0, 1],
+//   Common
+//   insertionCell: [0, 1], // The cell where the data is injected
+//   sheet: null, // The sheet where the data is injected
 // };
 
 const DEFAULT_CONFIGURATION = {
