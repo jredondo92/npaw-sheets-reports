@@ -41,4 +41,4 @@ global.deleteConfiguration = publicConfigurationFunctions.deleteConfiguration;
 global.startConfiguration = publicConfigurationFunctions.startConfiguration;
 
 // Reports Methods
-global.getStaticReport = publicReportsFunctions.getStaticReport;
+global.getReportData = publicReportsFunctions.getReportData;

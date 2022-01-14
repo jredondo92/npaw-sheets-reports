@@ -6,6 +6,7 @@ const CONFIGURATION_PROPERTY_KEY = 'NPAW_REPORTS__CONFIGURATION';
 //   type: 'static' || 'dynamic',
 //   // If static
 //   reportId: 'XXXXX',
+//   previewData: {},
 
 //   // If  dynamic
 //   name: '',

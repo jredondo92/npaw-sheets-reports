@@ -40,6 +40,8 @@ export const cleanProject = () => {
 };
 
 export const fetchSheetWithReport = () => {
-  publicReportsFunctions.getStaticReport();
-  SpreadsheetApp.getUi().alert('Report!!!!');
+  const configuration = publicConfigurationFunctions.getConfiguration();
+  const data = publicReportsFunctions.getReportData(configuration.previewData);
+
+  SpreadsheetApp.getUi().alert(JSON.stringify(data));
 };
