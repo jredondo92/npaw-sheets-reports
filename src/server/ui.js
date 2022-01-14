@@ -32,11 +32,6 @@ export const openConfigurationDialog = () => {
   SpreadsheetApp.getUi().showModalDialog(html, 'Configuration');
 };
 
-export const cleanProject = () => {
-  publicAuthFunctions.logoutUser();
-  SpreadsheetApp.getUi().alert('Logged out');
-};
-
 export const fetchSheetWithReport = () => {
   const isLoggedUser = publicAuthFunctions.getUser();
 
@@ -46,7 +41,7 @@ export const fetchSheetWithReport = () => {
       configuration.previewData
     );
 
-    publicSheetsFunctions.injectReportInSheet(data);
+    publicSheetsFunctions.injectReportInSheet({ data, configuration });
     SpreadsheetApp.getUi().alert('Injected!!');
   }
 };

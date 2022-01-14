@@ -21,7 +21,9 @@ const CONFIGURATION_PROPERTY_KEY = 'NPAW_REPORTS__CONFIGURATION';
 const DEFAULT_CONFIGURATION = {
   type: 'static',
   reportId: null,
-  insertionCell: [0, 0],
+  insertionCell: [1, 1],
+  previewData: null,
+  sheet: null,
 };
 
 export const getConfiguration = () => {

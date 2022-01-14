@@ -1,6 +1,7 @@
-const getSheets = () => SpreadsheetApp.getActive().getSheets();
+export const getSheets = () => SpreadsheetApp.getActive().getSheets();
 
-const getActiveSheetName = () => SpreadsheetApp.getActive().getSheetName();
+export const getActiveSheetName = () =>
+  SpreadsheetApp.getActive().getSheetName();
 
 export const getSheetsData = () => {
   const activeSheetName = getActiveSheetName();
@@ -36,7 +37,7 @@ function getRandomData() {
   return (Math.random() * 1000).toFixed(2).toString();
 }
 
-export function injectReportInSheet() {
+export function injectReportInSheet({ configuration }) {
   const data = [
     [
       'Title',
@@ -72,10 +73,16 @@ export function injectReportInSheet() {
 
   const rows = data.length;
   const columns = data[0].length;
+  const { insertionCell } = configuration;
 
   try {
     const sheet = SpreadsheetApp.getActive().getSheetByName('Sheet1');
-    const range = sheet.getRange(1, 1, rows, columns);
+    const range = sheet.getRange(
+      insertionCell[0],
+      insertionCell[1],
+      rows,
+      columns
+    );
     range.setValues(data);
 
     sheet.autoResizeColumns(1, columns);

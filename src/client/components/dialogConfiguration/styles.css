@@ -4,6 +4,7 @@
   gap: 8px;
 }
 
+.dialog_configuration__insertion_cell,
 .dialog_configuration__toggle {
   display: flex;
   flex-direction: column;

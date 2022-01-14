@@ -11,7 +11,6 @@ import * as publicReportsFunctions from './reports';
 global.onOpen = publicUiFunctions.onOpen;
 global.openAuthDialog = publicUiFunctions.openAuthDialog;
 global.openConfigurationDialog = publicUiFunctions.openConfigurationDialog;
-global.cleanProject = publicUiFunctions.cleanProject;
 global.fetchSheetWithReport = publicUiFunctions.fetchSheetWithReport;
 
 // Sheets Methods

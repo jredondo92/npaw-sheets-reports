@@ -140,6 +140,6 @@ export const getReportData = payload => {
 
     return response;
   } catch (e) {
-    throw e;
+    // throw e;
   }
 };

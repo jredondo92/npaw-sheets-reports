@@ -4,10 +4,6 @@ export const getPropertiesKeys = () => {
   return documentProperties.getKeys();
 };
 
-// export const getProperty = key => {
-//   return documentProperties.getProperty(key);
-// };
-
 export const getProperty = (key, defaultValue) => {
   const property = documentProperties.getProperty(key);
   if (!property) {

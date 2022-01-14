@@ -5,7 +5,15 @@ import React, { useState, useEffect } from 'react';
 import { useUser } from '@Hooks';
 
 export const AuthForm = () => {
-  const { isLogged, isMounting, isLoading, user, error, loginUser } = useUser();
+  const {
+    isLogged,
+    isMounting,
+    isLoading,
+    user,
+    error,
+    loginUser,
+    logoutUser,
+  } = useUser();
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
@@ -30,6 +38,8 @@ export const AuthForm = () => {
     return (
       <div>
         <p>{`Logged in account ${user.accountCode}`}</p>
+        <hr />
+        <button onClick={logoutUser}>Logout</button>
       </div>
     );
   }

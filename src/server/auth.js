@@ -1,4 +1,5 @@
 import * as publicPropertiesFunctions from './properties';
+import * as publicConfigurationFunctions from './configuration';
 
 const AUTH_PROPERTY_KEY = 'NPAW_REPORTS__AUTH';
 
@@ -8,7 +9,7 @@ export const getUser = () => {
 };
 
 export const loginUser = payload => {
-  const url = `https://ui-api.youbora.com/authentication/users/login?version=6&location=npaw-sheets-reports`;
+  const url = `https://ui-api.youbora.com/authentication/users/login`;
 
   const payloadEncoded = Object.keys(payload)
     .map(k => {
@@ -38,6 +39,7 @@ export const loginUser = payload => {
 
     // Save to storage
     publicPropertiesFunctions.setProperty(AUTH_PROPERTY_KEY, userInfo);
+    publicConfigurationFunctions.startConfiguration();
 
     return userInfo;
   } catch (e) {
@@ -48,4 +50,5 @@ export const loginUser = payload => {
 export const logoutUser = () => {
   // const user = publicPropertiesFunctions.deleteProperty('user');
   publicPropertiesFunctions.deleteAllProperties();
+  publicConfigurationFunctions.startConfiguration();
 };
