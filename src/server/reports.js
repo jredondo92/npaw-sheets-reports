@@ -128,9 +128,6 @@ export const getReportData = payload => {
     filters: JSON.stringify(payload.filters),
   };
 
-  SpreadsheetApp.getUi().alert(url);
-  SpreadsheetApp.getUi().alert(JSON.stringify(report));
-
   try {
     const response = UrlFetchApp.fetch(url, {
       method: 'post',
@@ -138,12 +135,10 @@ export const getReportData = payload => {
       payload: JSON.stringify(report),
     });
 
-    // const blob = respponse.getBlob();
-    // const data = blob.getDataAsString();
     // SpreadsheetApp.getUi().alert(data);
-    SpreadsheetApp.getUi().alert(response);
+    // SpreadsheetApp.getUi().alert(response);
 
-    return data;
+    return response;
   } catch (e) {
     throw e;
   }
