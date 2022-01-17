@@ -22,7 +22,7 @@ export function useDimensions() {
         );
 
         const json = await response.json();
-        setDimensions(json.data.filter(report => report.extension === 'csv'));
+        setDimensions(json);
       } catch (e) {
         setError(e);
       }

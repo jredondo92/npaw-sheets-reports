@@ -1,16 +1,21 @@
 import { useState, Fragment } from 'react'
 import { DimensionsTab, MetricsTab, SamplesTab } from './components'
+import { useDimensions, useMetrics, useSamples, useUser } from '@Hooks'
+
 export function FiltersWizard () {
     const [selectedTab, setSelectedTab] = useState(0)
-    
+    const { isMounting: isMountingUser, user } = useUser();
+    const { isLoading: isLoadingDimensions, dimensions } = useDimensions();
+    const { isLoading: isLoadingMetrics, metrics } = useMetrics();
+
     const TABS = [
         {
             label: 'Dimensions',
-            content: DimensionsTab
+            content: () => <DimensionsTab dimensions={groupBy(dimensions, dimension => dimension.category)} user={user} />
         },
         {
             label: 'Metrics',
-            content: MetricsTab
+            content: () => <MetricsTab metrics={groupBy(metrics, metric => metric.category)} user={user} />
         },
         {
             label: 'Samples',
@@ -22,7 +27,7 @@ export function FiltersWizard () {
         return TABS.map((tab, index) => (
             <button
                 key={`tab_${tab.label}`}
-                class="tablinks"
+                className="tablinks"
                 onClick={(event) => setSelectedTab(index)}
             >
                 {tab.label}
@@ -30,8 +35,26 @@ export function FiltersWizard () {
         ))
     }
 
+    function groupBy(list, keyGetter) {
+        const map = new Map();
+        list.forEach((item) => {
+             const key = keyGetter(item);
+             const collection = map.get(key);
+             if (!collection) {
+                 map.set(key, [item]);
+             } else {
+                 collection.push(item);
+             }
+        });
+        return map;
+    }
+
     function renderTabContent () {
         return TABS[selectedTab].content()
+    }
+
+    if (isLoadingDimensions || isLoadingMetrics || isMountingUser) {
+        return 'Loading Everything!!!';
     }
 
     return (

@@ -22,7 +22,7 @@ export function useMetrics() {
         );
 
         const json = await response.json();
-        setMetrics(json.data.filter(report => report.extension === 'csv'));
+        setMetrics(json);
       } catch (e) {
         setError(e);
       }

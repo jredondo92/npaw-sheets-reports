@@ -22,7 +22,8 @@ export function useSamples() {
         );
 
         const json = await response.json();
-        setSamples(json.data.filter(report => report.extension === 'csv'));
+        console.log(json)
+        setSamples(json);
       } catch (e) {
         setError(e);
       }

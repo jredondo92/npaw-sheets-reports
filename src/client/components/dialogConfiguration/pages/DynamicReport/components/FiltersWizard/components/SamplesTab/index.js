@@ -1,6 +1,6 @@
 export function SamplesTab () {
     return (
-        <div id="Samples" class="tabcontent">
+        <div id="Samples" className="tabcontent">
             <h3>Samples</h3>
             <input
             type="search"
